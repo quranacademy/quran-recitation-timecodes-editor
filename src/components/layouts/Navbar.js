@@ -35,6 +35,9 @@ function Navbar(props) {
           <Button component={Link} to="/" color="inherit">
             Home
           </Button>
+          <Button component={Link} to="/blog" color="inherit">
+            Blog
+          </Button>
           <Button component={Link} to="/about" color="inherit">
             About
           </Button>
