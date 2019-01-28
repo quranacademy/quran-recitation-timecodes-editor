@@ -4,6 +4,8 @@ import Navbar from "./components/layouts/Navbar";
 import Main from "./components/pages/Main";
 import About from "./components/pages/About";
 import Blog from "./components/pages/Blog";
+import LoginForm from "./components/auth/LoginForm";
+import RegisterForm from "./components/auth/RegisterForm";
 
 class App extends Component {
   render() {
@@ -15,6 +17,8 @@ class App extends Component {
             <Route exact path="/" component={Main} />
             <Route path="/about" component={About} />
             <Route path="/blog" component={Blog} />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/register" component={RegisterForm} />
           </Switch>
         </div>
       </BrowserRouter>
