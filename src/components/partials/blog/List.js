@@ -3,8 +3,6 @@ import { List, CircularProgress } from "@material-ui/core";
 
 import ListItem from "./ListItem";
 
-import { connect } from "react-redux";
-
 const styles = {
   progressBar: {
     margin: 30
@@ -23,9 +21,4 @@ const PostList = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    posts: state.post.posts
-  };
-};
-export default connect(mapStateToProps)(PostList);
+export default PostList;

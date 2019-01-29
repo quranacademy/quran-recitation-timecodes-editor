@@ -1,22 +1,26 @@
-const initState = {
-  posts: [
-    {
-      id: "1",
-      title: "test post 1",
-      text:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ipsam officia sequi, ipsa fugiat possimus, repudiandae laboriosam reprehenderit cumque voluptate doloremque non mollitia ipsum odit perspiciatis ducimus nam aliquid animi?"
-    },
-    {
-      id: "2",
-      title: "test post 2",
-      text:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ipsam officia sequi, ipsa fugiat possimus, repudiandae laboriosam reprehenderit cumque voluptate doloremque non mollitia ipsum odit perspiciatis ducimus nam aliquid animi?"
-    }
-  ]
-};
-
-const postReducer = (state = initState, action) => {
-  return state;
+const postReducer = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_POST":
+      console.log("added post", action.post);
+      return state;
+    case "ADD_POST_ERROR":
+      console.log("add post error", action.err);
+      return state;
+    case "EDIT_POST":
+      console.log("edited post", action.post);
+      return state;
+    case "EDIT_POST_ERROR":
+      console.log("edit post error", action.err);
+      return state;
+    case "DELETE_POST":
+      console.log("deleted post", action.post);
+      return state;
+    case "DELETE_POST_ERROR":
+      console.log("delete post error", action.err);
+      return state;
+    default:
+      return state;
+  }
 };
 
 export default postReducer;

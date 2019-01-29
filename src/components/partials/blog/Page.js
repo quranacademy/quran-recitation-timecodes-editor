@@ -1,8 +1,11 @@
 import React, { Fragment, Component } from "react";
-import PostList from "../partials/blog/List";
-import { Button } from "@material-ui/core";
+import PostList from "./List";
+import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import Form from "../partials/blog/Form";
+import Form from "./Form";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
 export class Blog extends Component {
   state = { addMode: false };
@@ -12,16 +15,10 @@ export class Blog extends Component {
   render() {
     return (
       <Fragment>
-        <PostList />
-        <Button
-          style={fabStyle}
-          onClick={this.toggleAddMode}
-          variant="fab"
-          color="primary"
-          aria-label="Add"
-        >
+        <PostList posts={this.props.posts} />
+        <Fab style={fabStyle} onClick={this.toggleAddMode} color="primary" aria-label="Add">
           <AddIcon />
-        </Button>
+        </Fab>
         {this.state.addMode ? (
           <Form data={{ title: "", text: "" }} onCancel={this.toggleAddMode} />
         ) : (
@@ -41,4 +38,13 @@ const fabStyle = {
   position: "fixed"
 };
 
-export default Blog;
+const mapStateToProps = state => {
+  return {
+    posts: state.firestore.ordered.posts
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "posts" }])
+)(Blog);

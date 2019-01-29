@@ -26,7 +26,11 @@ export class PostListItem extends Component {
         ) : (
           <Form
             onCancel={this.toggleEditMode}
-            data={{ title: this.props.post.title, text: this.props.post.text }}
+            data={{
+              id: this.props.post.id,
+              title: this.props.post.title,
+              text: this.props.post.text
+            }}
           />
         )}
       </Fragment>
