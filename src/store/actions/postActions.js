@@ -3,13 +3,14 @@ const addPost = post => {
   return (dispatch, getState, { getFirestore, getFirebase }) => {
     const firestore = getFirestore();
     const userId = getState().firebase.auth.uid || null;
+    const userName = getState().firebase.profile.username;
     //console.log('state', getState());
     console.log("post", post);
     firestore
       .collection("posts")
       .add({
         ...post,
-        createdByUserId: userId,
+        createdBy: { userId, userName },
         createdAt: new Date()
       })
       .then(() => {
@@ -26,12 +27,14 @@ const editPost = post => {
   return (dispatch, getState, { getFirestore, getFirebase }) => {
     const firestore = getFirestore();
     const userId = getState().firebase.auth.uid || null;
+    const userName = getState().firebase.profile.username;
+
     firestore
       .collection("posts")
       .doc(post.id)
       .update({
         ...post,
-        updatedByUserId: userId,
+        updatedBy: { userId, userName },
         updatedAt: new Date()
       })
       .then(() => {
