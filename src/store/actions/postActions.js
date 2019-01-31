@@ -3,7 +3,7 @@ const addPost = post => {
   return (dispatch, getState, { getFirestore, getFirebase }) => {
     const firestore = getFirestore();
     const userId = getState().firebase.auth.uid || null;
-    const userName = getState().firebase.profile.username;
+    const userName = getState().firebase.profile.username || "anonymous";
     //console.log('state', getState());
     console.log("post", post);
     firestore
