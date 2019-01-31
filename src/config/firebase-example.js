@@ -1,3 +1,4 @@
+//rename this file to "firebase.js", and add your project credentials
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
@@ -12,5 +13,5 @@ const config = {
 };
 
 firebase.initializeApp(config);
-firebase.firestore().settings({ timestampsInSnapshots: true });
+firebase.firestore();
 export default firebase;
