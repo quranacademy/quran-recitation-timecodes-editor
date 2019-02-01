@@ -2,14 +2,42 @@ import React from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import "./Page.css";
 
 const AyatPage = props => {
-  const { words, timecodes } = props;
+  let { words, timecodes } = props;
   if (timecodes && words) {
+    words = JSON.parse(words.jsonArray.replace(/'/g, '"'));
+    console.log("words", words);
+    timecodes = JSON.parse(timecodes.jsonArray.replace(/'/g, '"'));
+    console.log("timecodes", timecodes);
+
     return (
       <div>
-        <p>timecodes: {timecodes.jsonArray}</p>
-        <p>words: {words.jsonArray}</p>
+        <table>
+          <thead>
+            <tr>
+              <th>word</th>
+              <th>start</th>
+              <th>end</th>
+            </tr>
+          </thead>
+          <tbody>
+            {words.map((elem, index) => {
+              return (
+                <tr key={index} style={{ direction: "ltr" }}>
+                  <td className="arabicText">{elem}</td>
+                  <td>
+                    <input type="number" step="0.1" min="0" value={timecodes[index][2]} />
+                  </td>
+                  <td>
+                    <input type="number" step="0.1" min="0" value={timecodes[index][3]} />
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   } else {

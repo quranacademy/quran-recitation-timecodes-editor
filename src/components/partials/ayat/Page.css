@@ -1,0 +1,9 @@
+input {
+  width: 100px;
+}
+
+.arabicText {
+  font-family: "Scheherazade";
+  direction: rtl;
+  font-size: 30px;
+}
