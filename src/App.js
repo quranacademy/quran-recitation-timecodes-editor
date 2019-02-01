@@ -6,6 +6,7 @@ import About from "./components/pages/About";
 import Blog from "./components/partials/blog/Page";
 import LoginForm from "./components/auth/LoginForm";
 import RegisterForm from "./components/auth/RegisterForm";
+import AyatPage from "./components/partials/ayat/Page";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/blog" component={Blog} />
             <Route path="/login" component={LoginForm} />
             <Route path="/register" component={RegisterForm} />
+            <Route path="/ayat/:id" component={AyatPage} />
           </Switch>
         </div>
       </BrowserRouter>
